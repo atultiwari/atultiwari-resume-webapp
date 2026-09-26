@@ -1,0 +1,194 @@
+.chart {
+  margin-top: 48px;
+  padding: 22px 22px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+
+.chart__scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.chart__svg {
+  min-width: 640px;
+  width: 100%;
+  height: auto;
+  font-family: var(--font-mono);
+}
+
+.chart__tick line {
+  stroke: var(--rule);
+  stroke-dasharray: 2 4;
+}
+
+.chart__tick text {
+  fill: var(--ink-3);
+  font-size: 11px;
+}
+
+.chart__lane {
+  fill: var(--ink-2);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.chart__bar {
+  cursor: default;
+  outline: none;
+  transition: opacity 200ms ease;
+}
+
+.chart__bar.is-dim {
+  opacity: 0.35;
+}
+
+.chart__bar rect {
+  transform: scaleX(0);
+  transition: transform 900ms var(--ease-out);
+  transition-delay: var(--d);
+}
+
+.chart.is-visible .chart__bar rect {
+  transform: scaleX(1);
+}
+
+.chart__bar text {
+  font-size: 11px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  transition-delay: calc(var(--d) + 600ms);
+}
+
+.chart.is-visible .chart__bar text {
+  opacity: 1;
+}
+
+.chart__bar--medicine rect { fill: var(--eosin); }
+.chart__bar--medicine text { fill: #fff; }
+.chart__bar--computing rect { fill: var(--hema); }
+.chart__bar--computing text { fill: var(--bg); }
+.chart__bar--career rect { fill: color-mix(in srgb, var(--ink) 16%, var(--bg-elev)); stroke: var(--ink-3); stroke-width: 0.8; }
+.chart__bar--career text { fill: var(--ink); }
+.chart__bar text.is-outside { fill: var(--ink-2); }
+
+.chart__bar:focus-visible rect {
+  stroke: var(--focus);
+  stroke-width: 2;
+}
+
+.chart__now line {
+  stroke: var(--eosin);
+  stroke-width: 1.2;
+}
+
+.chart__now circle {
+  fill: var(--eosin);
+  animation: pulse 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.5; }
+}
+
+.chart__readout {
+  margin-top: 12px;
+  min-height: 1.6em;
+  color: var(--ink-3);
+}
+
+.chart__readout strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.path__lists {
+  display: grid;
+  gap: 48px;
+  margin-top: 64px;
+}
+
+@media (min-width: 1000px) {
+  .path__lists {
+    grid-template-columns: 1.15fr 1fr;
+  }
+}
+
+.path__h {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.path__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.path__list li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 560px) {
+  .path__list li {
+    grid-template-columns: 150px 1fr;
+  }
+}
+
+.path__when {
+  color: var(--ink-3);
+  padding-top: 3px;
+}
+
+.path__what {
+  font-weight: 500;
+}
+
+.path__where {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.path__tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--hema-soft);
+  color: var(--hema);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  vertical-align: 2px;
+}
+
+.path__note {
+  margin-top: 6px;
+  font-size: 0.93rem;
+  color: var(--ink-3);
+  max-width: 58ch;
+}
+
+.chart__hint {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .chart__hint {
+    display: inline;
+  }
+}

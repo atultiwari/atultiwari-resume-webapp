@@ -1,0 +1,242 @@
+.smear {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+/* The eyepiece: always dark so the bright field reads like a real microscope. */
+.smear__frame {
+  position: relative;
+  aspect-ratio: 1;
+  padding: clamp(26px, 5%, 40px);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 50%, #1d1826 0%, #0c0a11 70%),
+    #0c0a11;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 30px 60px -30px rgba(40, 20, 70, 0.55);
+}
+
+.smear__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.smear__hud {
+  position: absolute;
+  z-index: 1;
+  color: #a79fbb;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.smear__hud--tl { top: 12px; left: 16px; }
+.smear__hud--tr { top: 12px; right: 16px; }
+.smear__hud--bl { bottom: 12px; left: 16px; }
+.smear__hud--br { bottom: 12px; right: 16px; text-transform: none; }
+
+.smear__scalebar {
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: currentColor;
+}
+
+.smear__cell {
+  cursor: pointer;
+  outline: none;
+}
+
+.smear__hit {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2;
+  transition: stroke 200ms ease;
+}
+
+.smear__cell:hover .smear__hit,
+.smear__cell:focus-visible .smear__hit {
+  stroke: rgba(64, 41, 122, 0.55);
+  stroke-dasharray: 3 4;
+}
+
+.smear__cam {
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  animation: cam-in 900ms var(--ease-out) both;
+}
+
+@keyframes cam-in {
+  from { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0.6); }
+  to { opacity: 1; transform-box: fill-box; transform-origin: center; transform: scale(1); }
+}
+
+.smear__scan {
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  animation: scan 5.6s linear infinite;
+}
+
+@keyframes scan {
+  from { transform: translateY(0); }
+  to { transform: translateY(680px); }
+}
+
+.smear__reticle {
+  pointer-events: none;
+  transition: transform 900ms var(--ease-in-out);
+}
+
+.smear__bracket {
+  transition: transform 900ms var(--ease-in-out);
+}
+
+.smear__bracket path {
+  fill: none;
+  stroke: #1c1827;
+  stroke-width: 2.2;
+}
+
+.smear__label {
+  animation: label-in 500ms 600ms var(--ease-out) both;
+}
+
+.smear__label rect {
+  fill: #1c1827;
+}
+
+.smear__label text {
+  fill: #fbf8f3;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+
+@keyframes label-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Readout panel */
+.smear__panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+
+.smear__readout {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.smear__count {
+  color: var(--ink-3);
+}
+
+.smear__pred {
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--hema);
+}
+
+.smear__bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.smear__bars li {
+  display: grid;
+  grid-template-columns: 96px 1fr 52px;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-3);
+}
+
+.smear__bars li.is-top {
+  color: var(--ink);
+}
+
+.smear__bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-sunk);
+  overflow: hidden;
+}
+
+.smear__bar > span {
+  display: block;
+  height: 100%;
+  background: var(--rule-strong);
+  transform-origin: left;
+  transition: transform 800ms var(--ease-out);
+}
+
+.is-top .smear__bar > span {
+  background: linear-gradient(90deg, var(--hema), var(--eosin));
+}
+
+.smear__p {
+  text-align: right;
+}
+
+.smear__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.smear__controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.smear__controls button:hover {
+  border-color: var(--rule-strong);
+  background: var(--bg-sunk);
+}
+
+.smear__controls svg {
+  width: 14px;
+  height: 14px;
+}
+
+.smear__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+}
+
+.smear__swatch.is-on {
+  border-color: transparent;
+  background: radial-gradient(circle, #fff3a0, var(--gradcam-hot) 45%, #e2415f 80%);
+}
+
+.smear__caption {
+  font-size: 0.85rem;
+  color: var(--ink-3);
+  max-width: 60ch;
+}

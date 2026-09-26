@@ -1,22 +1,19 @@
-import tailwindcss from '@tailwindcss/vite';
+/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react';
-import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
-export default defineConfig(() => {
-  return {
-    plugins: [react(), tailwindcss()],
-    resolve: {
-      alias: {
-        '@': path.resolve(__dirname, '.'),
-      },
+// `base: './'` emits relative asset URLs so the static build works from any
+// folder on shared hosting (e.g. the domain root or /portfolio/).
+export default defineConfig({
+  base: './',
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    include: ['tests/**/*.test.{ts,tsx}'],
+    coverage: {
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/main.tsx', 'src/data/types.ts'],
+      thresholds: { lines: 80, functions: 80, branches: 80, statements: 80 },
     },
-    server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
-      hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
-    },
-  };
+  },
 });

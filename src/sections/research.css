@@ -1,0 +1,131 @@
+.research__block + .research__block {
+  margin-top: 64px;
+}
+
+.research__h {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.pubs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pubs__item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 4px 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 640px) {
+  .pubs__item {
+    grid-template-columns: 40px 56px 1fr;
+  }
+}
+
+.pubs__ref {
+  color: var(--eosin);
+  padding-top: 4px;
+}
+
+.pubs__year {
+  color: var(--ink-3);
+  padding-top: 4px;
+}
+
+@media (max-width: 639px) {
+  .pubs__year {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .pubs__link {
+    grid-column: 2;
+  }
+}
+
+.pubs__link {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding-right: 32px;
+  text-decoration: none;
+}
+
+.pubs__title {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  font-weight: 500;
+  transition: color 200ms ease;
+}
+
+.pubs__venue {
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+.pubs__arrow {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  color: var(--ink-3);
+  transition: transform 250ms var(--ease-out), color 200ms ease;
+}
+
+a.pubs__link:hover .pubs__title {
+  color: var(--hema);
+}
+
+a.pubs__link:hover .pubs__arrow {
+  color: var(--hema);
+  transform: translate(2px, -2px);
+}
+
+.talks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.talks__item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px 16px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 640px) {
+  .talks__item {
+    grid-template-columns: 112px 1fr;
+  }
+}
+
+.talks__date {
+  color: var(--ink-3);
+  padding-top: 6px;
+}
+
+.talks__title {
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.15;
+}
+
+.talks__event {
+  margin-top: 6px;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+.talks__event span {
+  color: var(--eosin);
+}
