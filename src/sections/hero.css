@@ -1,0 +1,135 @@
+.hero {
+  display: grid;
+  gap: clamp(40px, 6vw, 72px);
+  padding-top: clamp(110px, 16vh, 150px);
+  padding-bottom: clamp(64px, 10vw, 120px);
+  align-items: center;
+}
+
+@media (min-width: 1000px) {
+  .hero {
+    grid-template-columns: 1.05fr 0.95fr;
+    min-height: 100svh;
+  }
+}
+
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.hero__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--eosin);
+  box-shadow: 0 0 0 4px var(--eosin-soft);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7.4vw, 6.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin-bottom: 30px;
+}
+
+.hero__title em {
+  color: var(--hema);
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.hero__line > span {
+  display: inline-block;
+  animation: line-up 1000ms var(--ease-out) both;
+  animation-delay: calc(120ms + var(--i) * 110ms);
+}
+
+@keyframes line-up {
+  from { transform: translateY(105%); }
+  to { transform: none; }
+}
+
+.hero__intro {
+  font-size: clamp(1.05rem, 1.5vw, 1.18rem);
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin-bottom: 34px;
+  animation: fade-up 900ms 500ms var(--ease-out) both;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+  animation: fade-up 900ms 620ms var(--ease-out) both;
+}
+
+.hero__creds {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  color: var(--ink-3);
+  animation: fade-up 900ms 740ms var(--ease-out) both;
+}
+
+.hero__creds li:not(:last-child)::after {
+  content: '/';
+  margin: 0 10px;
+  color: var(--rule-strong);
+}
+
+.hero__visual {
+  animation: fade-up 1100ms 300ms var(--ease-out) both;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-strong);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 200ms var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--ink);
+}
+
+.btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn--solid {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.btn--solid:hover {
+  background: var(--hema);
+  border-color: var(--hema);
+  color: #fff;
+}

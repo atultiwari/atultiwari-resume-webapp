@@ -1,0 +1,56 @@
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-block: 40px 48px;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.footer__line {
+  flex: 1 1 320px;
+  font-size: 0.88rem;
+  color: var(--ink-3);
+}
+
+.footer__top {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.footer__top:hover {
+  color: var(--eosin);
+}
+
+.mitosis {
+  width: 72px;
+  height: 36px;
+  flex: none;
+}
+
+.mitosis__cyto {
+  fill: var(--eosin);
+  opacity: 0.35;
+}
+
+.mitosis__nuc {
+  fill: var(--hema);
+}
+
+.mitosis__cell--l { animation: split-l 5s var(--ease-in-out) infinite; }
+.mitosis__cell--r { animation: split-r 5s var(--ease-in-out) infinite; }
+
+@keyframes split-l {
+  0%, 25% { transform: translateX(0); }
+  60%, 85% { transform: translateX(-20px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes split-r {
+  0%, 25% { transform: translateX(0); }
+  60%, 85% { transform: translateX(20px); }
+  100% { transform: translateX(0); }
+}
