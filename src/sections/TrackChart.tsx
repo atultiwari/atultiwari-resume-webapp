@@ -121,7 +121,7 @@ export function TrackChart() {
                 const bx = x(b.start);
                 const bw = Math.max(6, x(b.end) - bx);
                 const by = lane.top + b.row * (ROW_H + ROW_GAP);
-                const label = placeLabel({ x: bx, width: bw, textWidth: b.short.length * CHAR_W, minX: LEFT, maxX: W - RIGHT, pad: 7 });
+                const label = placeLabel({ x: bx, width: bw, textWidth: b.short.length * CHAR_W, minX: LEFT, maxX: x(NOW) - 6, pad: 7 });
                 return (
                   <g
                     key={b.id}
