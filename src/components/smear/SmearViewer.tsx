@@ -180,7 +180,12 @@ export function SmearViewer() {
               />
             )}
 
-            {!reducedMotion && <rect className="smear__scan" x={0} y={-80} width={FIELD.size} height={80} fill="url(#scanline)" />}
+            {!reducedMotion && (
+              // SVG-native animation: CSS transforms + blend modes escape the clip path on mobile Safari.
+              <rect className="smear__scan" x={0} y={-80} width={FIELD.size} height={80} fill="url(#scanline)">
+                <animate attributeName="y" from={-80} to={FIELD.size} dur="5.6s" repeatCount="indefinite" />
+              </rect>
+            )}
             <circle cx={FIELD.cx} cy={FIELD.cy} r={FIELD.radius} fill="url(#vignette)" />
           </g>
 

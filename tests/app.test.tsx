@@ -52,4 +52,17 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('button', { name: /Switch to (dark|light) theme/ }));
     expect(document.documentElement.dataset.theme).not.toBe(before);
   });
+
+  it('keeps the footer to the copyright line', () => {
+    const { container } = render(<App />);
+    const footer = container.querySelector('footer.footer') as HTMLElement;
+    expect(footer.textContent).toContain('Dr. Atul Tiwari');
+    expect(footer.textContent).not.toMatch(/Instrument Serif|haematoxylin/);
+  });
+
+  it('animates the scan line without CSS blend modes (breaks clipping on mobile Safari)', () => {
+    const { container } = render(<App />);
+    const scan = container.querySelector('.smear__scan');
+    expect(scan?.querySelector('animate')).not.toBeNull();
+  });
 });
