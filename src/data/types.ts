@@ -27,7 +27,8 @@ export interface Role {
   readonly title: string;
   readonly organisation: string;
   readonly commitment: 'Full-time' | 'Part-time' | 'Part-time · Remote';
-  readonly summary: string;
+  /** Optional one-liner shown under the role in the list. */
+  readonly summary?: string;
   readonly span: Span;
 }
 

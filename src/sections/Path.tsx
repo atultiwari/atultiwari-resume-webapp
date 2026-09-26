@@ -39,7 +39,7 @@ export function Path() {
                       <p className="path__where">
                         {r.organisation} <span className="path__tag">{r.commitment}</span>
                       </p>
-                      <p className="path__note">{r.summary}</p>
+                      {r.summary && <p className="path__note">{r.summary}</p>}
                     </div>
                   </li>
                 ))}

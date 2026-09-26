@@ -25,4 +25,16 @@ describe('profile data', () => {
     expect(ids).toContain('linkedin');
     expect(ids).toContain('github');
   });
+
+  it('includes the earlier clinical and teaching posts', () => {
+    const titles = profile.roles.map((r) => `${r.title} @ ${r.organisation}`);
+    expect(titles).toContain('Medical Officer @ Government of Rajasthan');
+    expect(titles).toContain('Senior Resident, Pathology @ SMS Medical College, Jaipur');
+    expect(titles).toContain('Assistant Professor, Pathology @ RNT Medical College, Udaipur');
+  });
+
+  it('lists roles newest first', () => {
+    const starts = profile.roles.map((r) => toDecimal(r.span.start));
+    expect(starts).toEqual([...starts].sort((a, b) => b - a));
+  });
 });
