@@ -23,8 +23,7 @@ export function Footer() {
       <div className="container footer__inner">
         <Mitosis />
         <p className="footer__line">
-          © {new Date().getFullYear()} {profile.name}. Set in Instrument Serif &amp; Geist; coloured with haematoxylin
-          &amp; eosin.
+          © {new Date().getFullYear()} {profile.name}
         </p>
         <a href="#top" className="footer__top mono">
           Back to top ↑
